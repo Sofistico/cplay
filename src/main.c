@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
-#include "linked_list.h"
 #include <stdlib.h>
+#include "linked_list.h"
 
 void print_values_list(struct linked_list *list) {
   struct node *cur = list->nodes;
@@ -16,10 +16,11 @@ int main(int argc, char *argv[])
 {
   struct linked_list list = create_linked_list(2);
 
-  print_values_list(&list);
+  printf("Adding values to the list:\n");
 
-  printf("Adding a new value:\n");
-  add_node(4, &list);
+  for (int i = 0; i <= 10; i++) {
+    add_node(i, &list);
+  }
 
   print_values_list(&list);
 

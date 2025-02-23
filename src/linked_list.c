@@ -1,4 +1,5 @@
 #include "linked_list.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 struct node *set_new_node(struct node *cur, int val) {
@@ -34,9 +35,39 @@ void free_list(struct linked_list *list) {
   if (list == NULL || list->nodes == NULL)
     return;
   struct node *cur_node = list->nodes;
-  struct node* in_place = cur_node;
+  struct node *in_place = cur_node;
   while (in_place != NULL) {
-    struct node* in_place = cur_node->next;
+    cur_node = in_place;
+    in_place = cur_node->next;
     free(cur_node);
+    cur_node = NULL;
   }
+  in_place = NULL;
+}
+
+struct node *get_node(int node_count, struct linked_list *list) {
+  if (node_count > list->count)
+    return NULL;
+  if (list->count == 1)
+    return list->nodes;
+  struct node *cur_node = list->nodes;
+  int cur = 1;
+  for (int i = 1; i != cur; i++) {
+    cur++;
+    cur_node = cur_node->next;
+  }
+  return cur_node;
+}
+
+void remove_node(int node_count, struct linked_list *list) {
+  if (node_count == 0)
+    return;
+  struct node *node = get_node(node_count, list);
+  struct node *prev_node = get_node(node_count - 1, list);
+  struct node* next_node = get_node(node_count + 1, list);
+  free(node);
+  node = NULL;
+  list->count--;
+  if (prev_node != NULL)
+    prev_node->next = next_node;
 }
