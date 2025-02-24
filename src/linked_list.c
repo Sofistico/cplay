@@ -51,9 +51,7 @@ struct node *get_node(int node_count, struct linked_list *list) {
   if (list->count == 1)
     return list->nodes;
   struct node *cur_node = list->nodes;
-  int cur = 1;
-  for (int i = 1; i != cur; i++) {
-    cur++;
+  for (int i = 1; i < node_count; i++) {
     cur_node = cur_node->next;
   }
   return cur_node;
