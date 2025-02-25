@@ -62,7 +62,7 @@ void remove_node(int node_count, struct linked_list *list) {
     return;
   struct node *node = get_node(node_count, list);
   struct node *prev_node = get_node(node_count - 1, list);
-  struct node* next_node = get_node(node_count + 1, list);
+  struct node *next_node = get_node(node_count + 1, list);
   free(node);
   node = NULL;
   list->count--;
